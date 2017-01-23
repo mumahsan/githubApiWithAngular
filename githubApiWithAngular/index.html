@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html ng-app="githubApp">
+
+<head>
+  <!-- SCROLLS -->
+  <link rel="stylesheet" href="lib/custombootstrap.css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="lib/fontawesome/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="lib/octicons/octicons/octicons.css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="lib/site.css" media="screen" title="no title" charset="utf-8">
+  
+  <!-- SPELLS -->
+  <script src="lib/angular/angular.min.js" charset="utf-8"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+  <script src="app/app.js" charset="utf-8"></script>
+</head>
+
+<!-- define angular controller -->
+<body ng-controller="gitHubDataController">
+
+  <div id="main">
+    <div ng-view></div>
+  </div>
+  
+
+  
+</body>
+
+</html>

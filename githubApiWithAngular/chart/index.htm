@@ -1,0 +1,45 @@
+<html ng-app="ChartExample">
+<head>
+    <title>chart Example</title>
+</head>
+<body>
+    <div ng-view></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="../lib/angular-chart.min.js" charset="utf-8"></script>
+	<script src="../lib/moment.js" charset="utf-8"></script>
+     <script src="chart.js"></script> 
+    <script>
+        function MainCtrl($scope, $http){
+		$http.get("https://api.github.com/repos/nwjs/nw.js/stats/commit_activity").success(function (result) {
+				 $scope.commit_activity = result;
+				
+				//var data = {"xData": ["08/23", "Mon", "Tue", "Wed", "Thu", "Fri","Sat"],"yData":[{"name":"GitCommit", "data":[1,2,3,4,5,6,7, 8]}]}
+				var data = {"xData": [],"yData":[{"name":"GitCommit", "data":[]}]}
+				var daysCommit = [];
+				
+				for(var r in result){
+					var st = result[r];
+					data.xData.push(moment.unix(st.week).format("MM/DD"));
+					data.yData[0].data.push(st.total);
+					//data.yData.push({"data":st.total});
+				}
+				
+				$scope.lineChartYData=data.yData
+				$scope.lineChartXData=data.xData
+				
+		});
+            
+        }
+    </script>
+    <script>
+    angular.module('ChartExample',['AngularChart'], function( $routeProvider, $locationProvider ){
+        $routeProvider.when('/',{
+            template: '<chart title="Line chart example" xData="lineChartXData" yData="lineChartYData" xName="Month" yName="Hit" subtitle="This is an example"></chart>',
+            controller: MainCtrl
+            })
+    })
+    </script>
+</body>
+</html>

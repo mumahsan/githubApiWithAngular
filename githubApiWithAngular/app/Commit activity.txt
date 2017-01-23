@@ -1,0 +1,1 @@
+https://api.github.com/repos/nwjs/nw.js/stats/commit_activity

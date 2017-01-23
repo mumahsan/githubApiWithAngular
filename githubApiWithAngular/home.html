@@ -1,0 +1,59 @@
+<div class="container">
+		<h1 class="text-center">
+			<span ng-hide="repoData"/>Loading...</span>
+			<span />Trending</span>
+			<br>
+			<a href="" class="btn btn-default"></a>
+
+		</h1>
+
+	<div class="panel  panel-default">
+		<div class="panel-heading">
+
+			<form class="form-inline">
+				<span>
+					<h4>Repos <span class="badge">{{repoData.length}}</span>
+					<input ng-model="searchText" placeholder="Find a repo..." class="form-control input-sm">
+					</h4>
+				</span>
+			</form>
+
+		</div>
+		<div class="panel-body">
+			<div class="list-group">
+				<div ng-repeat="repo in repoData | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
+					<div class="row">
+						<div class="col-md-8">
+							<h4>
+								<small>
+									<span ng-if="repo.fork" class="octicon octicon-repo-forked"></span>
+									<span ng-if="!repo.fork" class="octicon octicon-repo"></span>
+								</small>
+								<a href="{{repo.html_url}}" target="_blank" >
+									{{repo.full_name}}
+								</a>
+								<small>{{repo.description}}</small>
+							</h4>
+
+							<small>
+								<a href="{{repo.homepage}}" class="">
+									<i class="fa fa-link"></i> WebPage
+								</a>
+							</small>
+						</div>
+						<div class="col-md-4">
+							  <!-- <a ng-href="chart/index.html" ng-click="" class="">
+									<i class="fa fa-bar-chart" aria-hidden="true"></i> 
+							  </a> -->
+							  <a ng-href="chart/index.html/{{repo.full_name}}" ng-click="" class="">
+									<i class="fa fa-bar-chart" aria-hidden="true"></i> 
+							  </a>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
